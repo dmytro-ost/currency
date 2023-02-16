@@ -4,7 +4,6 @@ import { CurrencyConverterComponent } from './currency-converter/currency-conver
 import { CurrencyConverterRoutingModule } from './currency-converter-routing.module';
 
 
-
 @NgModule({
   declarations: [
     CurrencyConverterComponent

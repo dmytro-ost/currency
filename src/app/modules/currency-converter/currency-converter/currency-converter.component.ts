@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CurrencyService } from 'src/app/services/currency.service';
 
 @Component({
   selector: 'app-currency-converter',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrencyConverterComponent implements OnInit {
 
-  constructor() { }
+  courses$ = this.currency.getCourses();
+
+  constructor(private readonly currency: CurrencyService) { }
 
   ngOnInit(): void {
   }
