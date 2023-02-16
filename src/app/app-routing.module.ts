@@ -6,6 +6,13 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 const routes: Routes = [{
   path: '',
   component: ContainerComponent,
+  children: [
+    {
+      path: '',
+      pathMatch: 'full',
+      loadChildren: () => import('./modules/currency-converter/currency-converter.module').then(m => m.CurrencyConverterModule)
+    },
+  ]
 },
 { path: '404', component: NotFoundComponent },
 { path: '**', redirectTo: '404' }
