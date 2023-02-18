@@ -6,7 +6,7 @@ import { Course, RawCourse } from '../models/course.model';
 })
 export class CurrencyAdapter {
     public adapt(source: RawCourse[]): Course[] {
-        const courses = source.map(rawCourse => Object.assign({}, {
+        const courses = source.map(rawCourse => ({
             id: rawCourse.r030,
             name: rawCourse.txt,
             rate: rawCourse.rate,

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { combineLatest } from 'rxjs';
 import { Course } from 'src/app/models/course.model';
 import { CurrencyService } from 'src/app/services/currency.service';
@@ -43,7 +43,7 @@ export class CurrencyFormComponent implements OnInit {
       this.courses$,
       this.currencyService.getValue()
     ])
-      .pipe(untilDestroyed(this))
+      .pipe(untilDestroyed(this), take(1))
       .subscribe(([courses, value]) => {
         this.courses = courses;
         this.course = this.getCourseByCode(this.courseCode);
@@ -65,9 +65,9 @@ export class CurrencyFormComponent implements OnInit {
       });
 
     this.formCurrency.get('currencySelectCtrl')?.valueChanges
-      .pipe(untilDestroyed(this))
-      .subscribe(
-        () => {
+      .pipe(
+        untilDestroyed(this),
+        tap(() => {
           this.course = this.formCurrency.get('currencySelectCtrl')?.value;
           this.courseCode = this.course.code;
 
@@ -76,17 +76,18 @@ export class CurrencyFormComponent implements OnInit {
             this.formCurrency.markAsUntouched();
             this.currencyService.setValue(this.formCurrency.get('currencyAmmountCtrl')?.value * this.course.rate);
           }
-        }
-      );
+        }))
+      .subscribe();
 
     this.formCurrency.get('currencyAmmountCtrl')?.valueChanges
-      .pipe(untilDestroyed(this))
-      .subscribe(
-        () => {
+      .pipe(
+        untilDestroyed(this),
+        tap(() => {
           const val = this.formCurrency.get('currencyAmmountCtrl')?.value * this.course.rate;
           this.currencyService.setValue(val)
-        }
-      );
+        })
+      )
+      .subscribe();
 
   }
 
