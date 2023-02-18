@@ -1,0 +1,12 @@
+<div class="header">
+    <ng-container *ngIf="(courses | json) != '{}'">
+        <div class="dollar">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="attach_money">attach_money</mat-icon>
+            <div>{{ courses['USD'] }}</div>
+        </div>
+        <div class="euro">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="euro_symbol">euro_symbol</mat-icon>
+            <div>{{ courses['EUR'] }}</div>
+        </div>
+    </ng-container>
+</div>

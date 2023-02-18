@@ -1,1 +1,8 @@
-<pre>{{ courses$ | async | json}}</pre>
+<app-currency-header [courses$]="courses$"></app-currency-header>
+<div class="converter" *ngIf="currencies.length">
+    <app-currency-form 
+        *ngFor="let code of currencies" 
+        [courses$]="courses$" 
+        [courseCode]="code">
+    </app-currency-form>
+</div>

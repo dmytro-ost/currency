@@ -1,0 +1,13 @@
+@import '/src/scss/colors.scss';
+
+.converter {
+    margin: 0 auto;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    background-color: $light;
+    border-radius: 5px;
+    padding: 20px;
+}

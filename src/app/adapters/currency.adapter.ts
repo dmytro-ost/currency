@@ -6,11 +6,20 @@ import { Course, RawCourse } from '../models/course.model';
 })
 export class CurrencyAdapter {
     public adapt(source: RawCourse[]): Course[] {
-        return source.map(rawCourse => Object.assign({}, {
+        const courses = source.map(rawCourse => Object.assign({}, {
             id: rawCourse.r030,
             name: rawCourse.txt,
             rate: rawCourse.rate,
             code: rawCourse.cc
         }));
+
+        courses.unshift({
+            id: 980,
+            name: "Українська гривня",
+            rate: 1,
+            code: "UAH"
+        });
+
+        return courses;
     }
 }

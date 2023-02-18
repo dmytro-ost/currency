@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModulesModule } from './material-modules/material-modules.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,13 +12,17 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    MaterialModulesModule
+    MaterialModulesModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
-    RouterModule,
     MaterialModulesModule,
-    NotFoundComponent
+    NotFoundComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
   ]
 })
 export class SharedModule { }
